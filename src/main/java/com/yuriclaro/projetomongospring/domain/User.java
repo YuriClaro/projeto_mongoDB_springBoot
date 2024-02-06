@@ -7,4 +7,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public record User(@Id String id, String name, String email) implements Serializable{
+
 }
