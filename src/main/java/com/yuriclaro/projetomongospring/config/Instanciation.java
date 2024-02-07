@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.yuriclaro.projetomongospring.domain.Post;
 import com.yuriclaro.projetomongospring.domain.User;
+import com.yuriclaro.projetomongospring.dto.AuthorDTO;
 import com.yuriclaro.projetomongospring.repository.PostRepository;
 import com.yuriclaro.projetomongospring.repository.UserRepository;
 
@@ -40,14 +41,15 @@ public class Instanciation implements CommandLineRunner {
             sdf.parse("21/03/2018"),
             "Partiu viagem!",
             "Vou viajar para São Paulo",
-            yuri);
+            new AuthorDTO(yuri)
+        );
         
             Post post2 = new Post(
             null,
             sdf.parse("23/03/2018"),
             "Bom dia!",
             "Acordei feliz hoje!",
-            milena
+            new AuthorDTO(milena)
         );
               
         userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
