@@ -42,6 +42,7 @@ public class Instanciation implements CommandLineRunner {
             "Vou viajar para São Paulo",
             new AuthorDTO(yuri)
         );
+        userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
         
         Post post2 = new Post(
             null,
@@ -51,8 +52,6 @@ public class Instanciation implements CommandLineRunner {
             new AuthorDTO(milena)
         );
               
-        userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
         postRepository.saveAll(Arrays.asList(post1, post2));
-        
    }
 }
