@@ -25,6 +25,7 @@ public class User implements Serializable{
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+    
     public User(){
     }
 

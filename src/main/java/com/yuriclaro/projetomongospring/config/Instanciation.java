@@ -31,7 +31,6 @@ public class Instanciation implements CommandLineRunner {
         userRepository.deleteAll();
         postRepository.deleteAll();
 
-
         User yuri = new User(null, "Yuri Claro", "yuriclaro@email.com");
         User milena = new User(null, "Milena Carvalho", "milenacarvalho@email.com");
         User marcus = new User(null, "Marcus Mesquita", "marcusmesquita@email.com");
@@ -44,7 +43,7 @@ public class Instanciation implements CommandLineRunner {
             new AuthorDTO(yuri)
         );
         
-            Post post2 = new Post(
+        Post post2 = new Post(
             null,
             sdf.parse("23/03/2018"),
             "Bom dia!",
@@ -54,5 +53,6 @@ public class Instanciation implements CommandLineRunner {
               
         userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
         postRepository.saveAll(Arrays.asList(post1, post2));
+        
    }
 }
