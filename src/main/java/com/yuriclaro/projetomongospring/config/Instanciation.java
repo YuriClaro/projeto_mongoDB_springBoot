@@ -26,6 +26,7 @@ public class Instanciation implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
@@ -37,6 +38,8 @@ public class Instanciation implements CommandLineRunner {
         User milena = new User(null, "Milena Carvalho", "milenacarvalho@email.com");
         User marcus = new User(null, "Marcus Mesquita", "marcusmesquita@email.com");
         
+        userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
+
         Post post1 = new Post(
             null, 
             sdf.parse("21/03/2018"),
@@ -44,7 +47,6 @@ public class Instanciation implements CommandLineRunner {
             "Vou viajar para São Paulo",
             new AuthorDTO(milena)
         );
-        userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
         
         Post post2 = new Post(
             null,
@@ -57,9 +59,13 @@ public class Instanciation implements CommandLineRunner {
         CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("2018/03/21"), new AuthorDTO(yuri));
         CommentDTO c2 = new CommentDTO("Aproveite!", sdf.parse("2018/03/22"), new AuthorDTO(marcus));
         CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("2018/03/23"), new AuthorDTO(yuri));
+        
         post1.getComments().addAll(Arrays.asList(c1, c2));
         post2.getComments().addAll(Arrays.asList(c3));
               
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        milena.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(milena);
    }
 }

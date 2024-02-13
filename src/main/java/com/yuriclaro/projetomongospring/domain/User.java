@@ -18,14 +18,6 @@ public class User implements Serializable{
     @DBRef(lazy = true)
     private List<Post> posts = new ArrayList<>();
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-    
     public User(){
     }
 
@@ -58,6 +50,15 @@ public class User implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+    
 
     @Override
     public int hashCode() {
