@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.yuriclaro.projetomongospring.domain.Post;
 import com.yuriclaro.projetomongospring.domain.User;
 import com.yuriclaro.projetomongospring.dto.AuthorDTO;
+import com.yuriclaro.projetomongospring.dto.CommentDTO;
 import com.yuriclaro.projetomongospring.repository.PostRepository;
 import com.yuriclaro.projetomongospring.repository.UserRepository;
 
@@ -30,6 +31,7 @@ public class Instanciation implements CommandLineRunner {
 
         userRepository.deleteAll();
         postRepository.deleteAll();
+        
 
         User yuri = new User(null, "Yuri Claro", "yuriclaro@email.com");
         User milena = new User(null, "Milena Carvalho", "milenacarvalho@email.com");
@@ -40,7 +42,7 @@ public class Instanciation implements CommandLineRunner {
             sdf.parse("21/03/2018"),
             "Partiu viagem!",
             "Vou viajar para São Paulo",
-            new AuthorDTO(yuri)
+            new AuthorDTO(milena)
         );
         userRepository.saveAll(Arrays.asList(yuri, milena, marcus));
         
@@ -51,6 +53,12 @@ public class Instanciation implements CommandLineRunner {
             "Acordei feliz hoje!",
             new AuthorDTO(milena)
         );
+
+        CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("2018/03/21"), new AuthorDTO(yuri));
+        CommentDTO c2 = new CommentDTO("Aproveite!", sdf.parse("2018/03/22"), new AuthorDTO(marcus));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("2018/03/23"), new AuthorDTO(yuri));
+        post1.getComments().addAll(Arrays.asList(c1, c2));
+        post2.getComments().addAll(Arrays.asList(c3));
               
         postRepository.saveAll(Arrays.asList(post1, post2));
    }

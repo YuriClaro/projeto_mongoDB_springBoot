@@ -3,11 +3,14 @@ package com.yuriclaro.projetomongospring.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.yuriclaro.projetomongospring.dto.AuthorDTO;
+import com.yuriclaro.projetomongospring.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable{
@@ -18,6 +21,8 @@ public class Post implements Serializable{
     private String title;
     private String body;
     private AuthorDTO author;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(){
     }
@@ -70,6 +75,23 @@ public class Post implements Serializable{
         this.author = author;
     }
 
+    
+    public AuthorDTO getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorDTO author) {
+        this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -79,6 +101,7 @@ public class Post implements Serializable{
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((body == null) ? 0 : body.hashCode());
         result = prime * result + ((author == null) ? 0 : author.hashCode());
+        result = prime * result + ((comments == null) ? 0 : comments.hashCode());
         return result;
     }
 
@@ -116,6 +139,13 @@ public class Post implements Serializable{
                 return false;
         } else if (!author.equals(other.author))
             return false;
-      return true;
+        if (comments == null) {
+            if (other.comments != null)
+                return false;
+        } else if (!comments.equals(other.comments))
+            return false;
+        return true;
     }
+
+    
 }
