@@ -12,3 +12,7 @@ Este projeto é uma aplicação de MongoDB com Spring Boot, onde será realizado
 - SpringBoot
 - NoSQL
 - Diagramas UML
+
+
+# Exemplo
+![Imagem 1](images/example.jpg)
